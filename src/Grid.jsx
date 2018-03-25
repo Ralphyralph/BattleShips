@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'underscore';
 import './App.css';
 
 class Grid extends React.Component {
@@ -8,31 +9,38 @@ class Grid extends React.Component {
 
         this.cols = 10;
         this.rows = 10;
-        this.grid = [];
-    }
-
-    componentDidMount() {
-        //console.log( this.props.boats );
-        console.log(this.props._id + " Grid Printed");
     }
     
     printGrid() {
 
-        var html = [];
-        for (var i=0; i < this.rows; i++) {
-            html.push(<tr>{this.printRow()}</tr>)
-        }
+        //boats={this.props.boats}
 
-        return html;
+        
+        var grid = [];
+        for (var i=0; i < this.rows; i++) {
+            var row = [];
+            for (var j=0; j < this.cols; j++) {
+                var status = this.cellStatus(j,i);
+                row.push(<Cell key={j} x={j} y={i} status={status} />);
+            }
+            grid.push(<tr key={j+i}>{row}</tr>);
+        }
+        return grid;
     }
 
-    printRow() {
+    cellStatus (x,y) {
 
-        var html = [];
-        for (var i=0; i < this.cols; i++) {
-            html.push(<Cell />)
-        }
-        return html;
+        console.log(this.props.boats.length);
+       
+        for (var i=0; i < this.props.boats.length; i++) {
+             console.log(1);
+             if (this.props.boats[i].x == x && this.props.boats[i].y == y) {
+                console.log(2);
+                return "boat";
+            }   
+        };
+
+        return "empty";
     }
 
     render() {
@@ -44,8 +52,10 @@ class Grid extends React.Component {
 
 class Cell extends React.Component {
 
+
+
     render() {
-        return <td>&nbsp;</td>;
+        return <td className={this.props.status}>{this.props.x}{this.props.y}</td>;
     }
 }
 
