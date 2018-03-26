@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import _ from 'underscore';
 import './App.css';
 
-class Grid extends React.Component {
+class Grid extends Component {
 
     constructor() {
         super();
@@ -13,29 +13,24 @@ class Grid extends React.Component {
     
     printGrid() {
 
-        //boats={this.props.boats}
+        console.log(this.props.boats);
 
-        
         var grid = [];
         for (var i=0; i < this.rows; i++) {
             var row = [];
             for (var j=0; j < this.cols; j++) {
-                var status = this.cellStatus(j,i);
-                row.push(<Cell key={j} x={j} y={i} status={status} />);
+                var status = this.cellStatus(i,j);
+                row.push(<Cell key={(i/10)+j} x={j} y={i} status={status} />);
             }
-            grid.push(<tr key={j+i}>{row}</tr>);
+            grid.push(<tr key={"row_"+i}>{row}</tr>);
         }
         return grid;
     }
 
     cellStatus (x,y) {
-
-        console.log(this.props.boats.length);
        
         for (var i=0; i < this.props.boats.length; i++) {
-             console.log(1);
              if (this.props.boats[i].x == x && this.props.boats[i].y == y) {
-                console.log(2);
                 return "boat";
             }   
         };
@@ -50,9 +45,7 @@ class Grid extends React.Component {
     }
 }
 
-class Cell extends React.Component {
-
-
+class Cell extends Component {
 
     render() {
         return <td className={this.props.status}>{this.props.x}{this.props.y}</td>;
