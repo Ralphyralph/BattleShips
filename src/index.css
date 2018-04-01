@@ -3,3 +3,30 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+form.userName {
+	
+	display:block;
+	position: relative;
+	width: 360px;
+	margin: 10% auto 0 auto;
+}
+form.userName label {
+	
+	width: 100%;
+}
+
+form.userName input {
+	
+	padding: 6px;
+	font-size: 25px;
+	width: calc(100% - 14px);
+}
+form.userName button {
+	
+	background-color: #ffffff;
+	border: 1px solid #999999;
+	padding: 6px;
+	margin: 30px 0 0 0;
+	float: right;
+}
