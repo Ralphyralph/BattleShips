@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import _ from 'underscore';
-import DB_CONFIG from './Config';
-import firebase from 'firebase/app';
-import 'firebase/database';
 import Grid from './Grid';
 import './App.css';
 
@@ -22,8 +19,6 @@ class App extends Component {
       user: []
     }
 
-    this.app = firebase.initializeApp(DB_CONFIG);
-    this.database = this.app.database().ref().child('test');
   }
 
   componentDidMount() {
@@ -57,8 +52,8 @@ cellHasBoat(x, y) {
     var flag = false;
     _.each(this.state.boats, function (item, i) {
         if (item.x === x && item.y === y) {
-            console.log("yes, has!");
-            flag = true;
+          console.log("yes, has!");
+          flag = true;
         }
     });
     return flag;

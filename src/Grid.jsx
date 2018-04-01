@@ -30,7 +30,7 @@ class Grid extends Component {
     cellStatus (x,y) {
        
         for (var i=0; i < this.props.boats.length; i++) {
-             if (this.props.boats[i].x == x && this.props.boats[i].y == y) {
+             if (this.props.boats[i].x === x && this.props.boats[i].y === y) {
                 return "boat";
             }   
         };
